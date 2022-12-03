@@ -20,7 +20,7 @@ to google earth's co-ordinate system (WGS 84). It also simultaneously plots it o
 
 1.	Click on "Plot Sample Data to plot the sample data unto google earth
 
-created by: Joseph Paintsil
+Created by: Joseph Paintsil
 email: paintsil610@gmail.com
 (c) 2022
 Thank you
