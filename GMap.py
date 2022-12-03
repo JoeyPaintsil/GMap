@@ -16,24 +16,26 @@ root = Tk()
 root.title("GMap")
 root.config(bg=BACKGROUND_COLOR)
 root.geometry("800x750")
-root.resizable(False,False)
+root.resizable(False, False)
 root_icon = tkinter.Image("photo", file="title_icon.png")
-root.iconphoto(True,root_icon)
+root.iconphoto(True, root_icon)
 
-canvas = Canvas(root,bg=BACKGROUND_COLOR,highlightthickness=0, width=200, height=200)
+canvas = Canvas(root, bg=BACKGROUND_COLOR, highlightthickness=0, width=200, height=200)
 canvas.grid(column=1, row=0, padx=40)
 
 icon = PhotoImage(file="png_resize.png")
 image_file = canvas.create_image(100, 100, image=icon)
 
-excel_label = Label(root, text="• Import an excel .csv file which has co-ordinate information about the plot of land\n\n"
-                                 "• Let the columns be arranged in the following order:"
-                                 " Northings(N), Eastings(E), Label(L) \n", justify="left", font=FONT, bg=BACKGROUND_COLOR,
+excel_label = Label(root,
+                    text="• Import an excel .csv file which has co-ordinate information about the plot of land\n\n"
+                         "• Let the columns be arranged in the following order:"
+                         " Northings(N), Eastings(E), Label(L) \n", justify="left", font=FONT, bg=BACKGROUND_COLOR,
                     fg=FOREGROUND_COLOR)
 excel_label.grid(column=1, row=1, columnspan=2, pady=20)
 
 excel_entry = Entry(root, width=70, font=("Courier 10 italic"))
 excel_entry.grid(column=1, row=2, pady=20, padx=10)
+
 
 def browse_excel():
     filename = filedialog.askopenfilename(initialdir="/", title="Select Co-ordinate File",
@@ -41,9 +43,11 @@ def browse_excel():
                                                      ))
     excel_entry.insert(END, string=filename)
 
+
 # Browse button
 excel_browse = Button(root, text="BROWSE", command=browse_excel, width=20, activebackground=BUTTON_CLICK_COLOR)
 excel_browse.grid(row=2, column=2, padx=20)
+
 
 # Plotting the plot
 def plot():
@@ -104,28 +108,35 @@ def plot():
     os.startfile(os.path.abspath(f"{output_data}.kml"))
 
     if is_success:
-        messagebox.showinfo(title="Success", message="Your co-ordinates have successfully been converted and plotted. If you have google earth"
-                                                     "installed, the plot should be automatically plotted unto google earth.")
+        messagebox.showinfo(title="Success",
+                            message="Your co-ordinates have successfully been converted and plotted. If you have google earth"
+                                    "installed, the plot should be automatically plotted unto google earth.")
     else:
-        messagebox.showerror(title="Error", message="There was an error. Please press the 'MANUAL' button to see how the app works"
-                                                    ". Make sure there are no numericals in the label column. If you still face challenges,"
-                                                    "send an email to: paintsil610@gmail.com")
+        messagebox.showerror(title="Error",
+                             message="There was an error. Please press the 'MANUAL' button to see how the app works"
+                                     ". Make sure there are no numericals in the label column. If you still face challenges,"
+                                     "send an email to: paintsil610@gmail.com")
+
 
 def about():
     about_window = Tk()
     about_window.title("About Gmap")
     about_window.resizable(False, False)
-    about_label = Label(about_window, justify="left", font=(f"{FONT_ONLY} 10"), text="This app enables you to plot your siteplan co-ordinates (in Ghana War Office system)\n"
-                                           " directly unto google earth. Please make sure you have google earth installed first.")
+    about_label = Label(about_window, justify="left", font=(f"{FONT_ONLY} 10"),
+                        text="This app enables you to plot your siteplan co-ordinates (in Ghana War Office system)\n"
+                             " directly unto google earth. Please make sure you have google earth installed first.")
     about_label.pack(padx=20, pady=20)
-    developer_label = Label(about_window,justify="center",font=(f"{FONT_ONLY} 10"), text="This app was developed by Joseph Paintsil\n"
-                                                                         "email: paintsil610@gmail.com\n"
-                                                                                       "© 2022")
+    developer_label = Label(about_window, justify="center", font=(f"{FONT_ONLY} 10"),
+                            text="This app was developed by Joseph Paintsil\n"
+                                 "email: paintsil610@gmail.com\n"
+                                 "© 2022")
     developer_label.pack(padx=20, pady=20)
     about_window.mainloop()
 
+
 def view_sample():
     os.startfile(os.path.abspath("sample_data.csv"))
+
 
 def plot_sample():
     is_success = True
@@ -180,22 +191,28 @@ def plot_sample():
     os.startfile(os.path.abspath(f"{output_data}.kml"))
 
     if is_success:
-        messagebox.showinfo(title="Success", message="Your co-ordinates have successfully been converted and plotted. If you have google earth"
-                                                     "installed, the plot should be automatically plotted unto google earth.")
+        messagebox.showinfo(title="Success",
+                            message="Your co-ordinates have successfully been converted and plotted. If you have google earth"
+                                    "installed, the plot should be automatically plotted unto google earth.")
     else:
-        messagebox.showerror(title="Error", message="There was an error. Please press the 'MANUAL' button to see how the app works"
-                                                    ". Make sure there are no numericals in the label column. If you still face challenges,"
-                                                    "send an email to: paintsil610@gmail.com")
+        messagebox.showerror(title="Error",
+                             message="There was an error. Please press the 'MANUAL' button to see how the app works"
+                                     ". Make sure there are no numericals in the label column. If you still face challenges,"
+                                     "send an email to: paintsil610@gmail.com")
+
 
 def manual():
     os.startfile(os.path.abspath("README.txt"))
+
+
 #
 # Plot Button
 plot_button = Button(root, text="PLOT", command=plot, width=45, activebackground=BUTTON_CLICK_COLOR)
 plot_button.grid(row=3, column=1, columnspan=2, pady=20)
 
 # View Sample Data
-sample_button = Button(root, text="VIEW SAMPLE DATA", command=view_sample, width=45, activebackground=BUTTON_CLICK_COLOR)
+sample_button = Button(root, text="VIEW SAMPLE DATA", command=view_sample, width=45,
+                       activebackground=BUTTON_CLICK_COLOR)
 sample_button.grid(row=4, column=1, columnspan=2, pady=20)
 
 # Plot Sample Data
